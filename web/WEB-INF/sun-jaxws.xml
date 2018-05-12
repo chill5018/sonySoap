@@ -4,6 +4,6 @@
 
     <endpoint
             name='HelloWorld'
-            implementation='com.sony.SonyService'
+            implementation='SonyService.SonyService'
             url-pattern='/services/HelloWorld'/>
 </endpoints>

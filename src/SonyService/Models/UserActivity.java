@@ -1,4 +1,4 @@
-package com.sony.Models;
+package SonyService.Models;
 
 public class UserActivity {
     private int id;

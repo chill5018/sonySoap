@@ -1,6 +1,7 @@
-package com.sony;
+package SonyService.Database;
 
-import com.sony.Models.Movie;
+import SonyService.Models.Movie;
+import SonyService.SonyService;
 
 import java.sql.*;
 
@@ -47,28 +48,35 @@ public class DatabaseConnector {
         return conn;
     }
 
-    public void getMoviesFromDatabase() {
-        try {
-            String sql = "SELECT * FROM movies";
-
-            stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-
-            while (rs.next()) {
+    public Movie getMoviesFromDatabase() {
+//        try {
+//            String sql = "SELECT * FROM movies";
+//
+//            stmt = conn.createStatement();
+//            ResultSet rs = stmt.executeQuery(sql);
+//
+//            while (rs.next()) {
                 Movie m = new Movie();
 
-                m.setId(rs.getInt("id_student"));
-                m.setTitle(rs.getString("title"));
-                m.setDescription(rs.getString("movie_description"));
-                m.setImageUrl(rs.getString("image_url"));
-                m.setVideoUrl(rs.getString("video_url"));
+                m.setDescription("Hello Movies Desc");
+                m.setTitle("Happy Gilmore");
+                m.setImageUrl("https://google.com");
+                m.setVideoUrl("https://google.com");
+                m.setId(1);
 
-                SonyService.movieList.add(m);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//                m.setId(rs.getInt("id_student"));
+//                m.setTitle(rs.getString("title"));
+//                m.setDescription(rs.getString("movie_description"));
+//                m.setImageUrl(rs.getString("image_url"));
+//                m.setVideoUrl(rs.getString("video_url"));
 
+//                SonyService.movieList.add(m);
+
+                return m;
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
 
 

@@ -1,4 +1,4 @@
-package com.sony.Models;
+package SonyService.Models;
 
 public class Movie {
     private int id;
