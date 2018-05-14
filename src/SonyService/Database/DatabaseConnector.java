@@ -6,12 +6,15 @@ import SonyService.SonyService;
 import java.sql.*;
 
 public class DatabaseConnector {
-    static final String DB_URL = "jdbc:mysql://localhost/kea";
+    static final String DB_URL = "jdbc:mysql://localhost:3306";
     static final String DB_USER = "root";
-    static final String DB_PASS = "teamtreehouse";
+    static final String DB_PASS = "@lf@";
 
     private Connection conn = null;
-    private Statement stmt = null;
+
+    public DatabaseConnector() {
+        connectDatabase();
+    }
 
     public void connectDatabase() {
         System.out.println("-------- MySQL JDBC Connection Testing ------------");
@@ -48,36 +51,7 @@ public class DatabaseConnector {
         return conn;
     }
 
-    public Movie getMoviesFromDatabase() {
-//        try {
-//            String sql = "SELECT * FROM movies";
-//
-//            stmt = conn.createStatement();
-//            ResultSet rs = stmt.executeQuery(sql);
-//
-//            while (rs.next()) {
-                Movie m = new Movie();
 
-                m.setDescription("Hello Movies Desc");
-                m.setTitle("Happy Gilmore");
-                m.setImageUrl("https://google.com");
-                m.setVideoUrl("https://google.com");
-                m.setId(1);
-
-//                m.setId(rs.getInt("id_student"));
-//                m.setTitle(rs.getString("title"));
-//                m.setDescription(rs.getString("movie_description"));
-//                m.setImageUrl(rs.getString("image_url"));
-//                m.setVideoUrl(rs.getString("video_url"));
-
-//                SonyService.movieList.add(m);
-
-                return m;
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-    }
 
 
 }

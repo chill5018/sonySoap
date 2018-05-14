@@ -1,26 +1,26 @@
 package SonyService;
 
-import SonyService.Database.DatabaseConnector;
+import SonyService.Database.MovieRepository;
+import SonyService.Database.SongRepository;
+import SonyService.Database.UserActivityRepository;
 import SonyService.Models.Movie;
+import SonyService.Models.Song;
+import SonyService.Models.UserActivity;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.xml.ws.Endpoint;
 import java.util.ArrayList;
-import java.util.List;
 
 @WebService()
 public class SonyService {
-  public static List<Movie> movieList;
 
-  private static DatabaseConnector DB = new DatabaseConnector();
+  private static MovieRepository movieRepo= new MovieRepository();
+  private static SongRepository songRepo = new SongRepository();
+  private static UserActivityRepository activityRepo = new UserActivityRepository();
 
   public static void main(String[] argv) {
-    movieList = new ArrayList<>();
-
-    DB.connectDatabase();
-
 
     Object implementor = new SonyService();
     String address = "http://localhost:9000/SonyService";
@@ -29,29 +29,44 @@ public class SonyService {
 
 
   @WebMethod
-  public void getMovieStats(@WebParam(name = "studentId") int studentId,
-                                @WebParam(name = "classId")int classId)
-  {
-
+  /**
+   * Searches a movie by id and returns it.
+   */
+  public Movie getMovie(@WebParam(name = "Id") int id) {
+    return movieRepo.getMovie(id);
   }
 
   @WebMethod
-  // Sends movie to Mediaroids
-  public Movie sendMovies(@WebParam(name = "content_receiver") String contentReceiver) {
-
-    // Sets the movie list with Data
-//    Movie m = DB.getMoviesFromDatabase();
-
-    return DB.getMoviesFromDatabase();
-
-    // Return the movies list
-//    return movieList;
+  /**
+   * Searches a song by id and returns it.
+   */
+  public Song getSong(@WebParam(name = "Id") int id) {
+    return songRepo.getSong(id);
   }
 
   @WebMethod
-  // Receives Mediaroids User Activity Data
-  // Streams, Plays, Ratings
-  public void getUserActivity() {
-
+  /**
+   * Adds a list of movies to the database.
+   */
+  public void sendMovies(@WebParam(name= "Movie List") ArrayList<Movie> movies) {
+    movieRepo.addMovies(movies);
   }
+
+  @WebMethod
+  /**
+   * Adds a list of songs to the database.
+   */
+  public void sendSongs(@WebParam(name= "Song.java List") ArrayList<Song> songs) {
+    songRepo.addSongs(songs);
+  }
+
+
+  @WebMethod
+  /**
+   * Adds the user activity to the database.
+   */
+  public void sendUserActivity(@WebParam(name = "User Activity List") ArrayList<UserActivity> activity) {
+    activityRepo.addUserActivity(activity);
+  }
+
 }
