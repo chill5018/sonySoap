@@ -1,5 +1,6 @@
 package SonyService;
 
+import SonyService.ConsoleClient.ConsoleManager;
 import SonyService.Database.MovieRepository;
 import SonyService.Database.SongRepository;
 import SonyService.Database.UserActivityRepository;
@@ -25,6 +26,12 @@ public class SonyService {
     Object implementor = new SonyService();
     String address = "http://localhost:9000/SonyService";
     Endpoint.publish(address, implementor);
+
+
+    System.out.println("The Console Client is starting...");
+    ConsoleManager consoleManager = new ConsoleManager();
+
+
   }
 
 

@@ -62,8 +62,24 @@ public class MovieRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
 
+    public void addMovie(Movie movie) {
+        try {
 
+            String sql = "INSERT INTO movies VALUES(?, ?, ?, ?)";
+            Connection conn = DB.getConn();
+
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, movie.getTitle());
+            stmt.setString(2, movie.getDescription());
+            stmt.setString(3, movie.getImageUrl());
+            stmt.setString(4, movie.getVideoUrl());
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public Movie getMovie(int id) {
